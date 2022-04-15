@@ -288,7 +288,6 @@ blocking_serial_hw_control (bool connected)
       break;
 
     case false:
-      // GPIO input TEST <<<<!>>>> todo : change to macro
       GPIO_PinInGet (SERIAL_READY_PORT, SERIAL_REQUEST_PIN) ?
           GPIO_PinOutClear (SERIAL_READY_PORT, SERIAL_READY_PIN) :
           GPIO_PinOutSet (SERIAL_READY_PORT, SERIAL_READY_PIN);
