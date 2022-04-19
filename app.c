@@ -1,6 +1,10 @@
 /***************************************************************************//**
  * Dariusz Adamczyk
- * EFR32BG22 - IM40 FW
+ *
+ * Compatible soc's:
+ *
+ * EFR32BG22 - IM40
+ * EFR32BG22 - GM32
  *
  * @file app.c
  * @brief Application code
@@ -31,6 +35,8 @@
 #include "sl_btmesh_wstk_lcd.h"
 #endif // SL_CATALOG_BTMESH_WSTK_LCD_PRESENT
 
+#include "cJSON.h"
+
 /**************************************************************************//**
  * Definitions
  *****************************************************************************/
@@ -38,14 +44,13 @@
 #define UINT16_TO_BYTE0(n)            ((uint8_t) (n))
 #define UINT16_TO_BYTE1(n)            ((uint8_t) ((n) >> 8))
 
-#define BUFSIZE    128
-#define SPP_BUFF_SIZE 128
-#define USART_NEWLINE_TERMINATOR '\n'
+#define BUFSIZE                       128
+#define SPP_BUFF_SIZE                 128
+#define USART_NEWLINE_TERMINATOR      '\n'
 
-#define SERIAL_READY_PORT         gpioPortB
+#define SERIAL_READY_PORT             gpioPortB
 #define SERIAL_REQUEST_PIN            1
 #define SERIAL_READY_PIN              2
-
 
 /**************************************************************************//**
  * Declarations
@@ -84,7 +89,13 @@ size_t
 blocking_serial_read (uint8_t *data, uint8_t terminator);
 
 void
-blocking_serial_hw_control(bool connected);
+blocking_serial_hw_control (bool connected);
+
+bool
+check_if_command_is_valid (char *inJson, size_t len, char *command,
+                           uint8_t *value);
+bool
+parse_incoming_data_str (char *rxPacket);
 
 /**************************************************************************//**
  * Handlers
@@ -180,10 +191,10 @@ periodic_timer_callback (sl_sleeptimer_timer_handle_t *handle, void *data)
   update_current_timestamp_characteristic (sl_sleeptimer_get_time ());
 
   // Current humidity notification >> todo real measurement or UART
-  update_current_humidity_characteristic (++dummy_i);
+  //update_current_humidity_characteristic (++dummy_i);
 
   // Current temperature notification >>  todo real measurement or UART
-  update_current_temperature_characteristic (++dummy_i);
+  //update_current_temperature_characteristic (++dummy_i);
 
   // Update overdue values
   if (agregate_notify_flag)
@@ -235,15 +246,15 @@ app_init (void)
   dummy_agregate_buff[3] = 5;
 
   // Initialize connection indicator pin
-  GPIO_PinModeSet (gpioPortB, 2, gpioModePushPull, 1);
-  GPIO_PinOutClear (gpioPortB, 2);
+  GPIO_PinModeSet (SERIAL_READY_PORT, SERIAL_READY_PIN, gpioModePushPull, 1);
+  GPIO_PinOutClear (SERIAL_READY_PORT, SERIAL_READY_PIN);
 
   // Initialize wake-ip pin (USART)
-  GPIO_PinModeSet (gpioPortB, 1, gpioModeInputPull, 1);
+  GPIO_PinModeSet (SERIAL_READY_PORT, SERIAL_REQUEST_PIN, gpioModeInputPull, 1);
 
   // Sends invitation string via USART
   uint8_t uart_hello_str[] =
-    { "Hello EFR32BG22 - BLE Template\n" };
+    { "Hello EFR32BG22 - BLE Template - ver 1.0\n" };
   blocking_serial_write (uart_hello_str, strlen ((char*) uart_hello_str));
 }
 
@@ -263,7 +274,14 @@ app_process_action (void)
       //Reads data from USART
       if (blocking_serial_read (temp_buffer, USART_NEWLINE_TERMINATOR) == true)
         {
+          // Update SPP characteristic value
           update_spp_characteristic (temp_buffer);
+
+          // Parse incoming data
+          if (!parse_incoming_data_str ((char*) input_uart_buffer))
+            blocking_serial_write ((uint8_t*) "JSON error\n",
+                                   strlen ("JSON error\n"));
+
           memset (temp_buffer, 0, SPP_BUFF_SIZE);
         }
     }
@@ -445,6 +463,8 @@ sl_bt_on_event (sl_bt_msg_t *evt)
 
       // Initialize SPP characteristic
       memset (input_uart_buffer, 0, SPP_BUFF_SIZE);
+
+      // Update SPP characteristic value
       update_spp_characteristic ((uint8_t*) input_uart_buffer);
 
       break;
@@ -569,7 +589,6 @@ update_current_timestamp_characteristic (sl_sleeptimer_timestamp_t timestamp)
   // Write attribute in the local GATT database.
   sc = sl_bt_gatt_server_write_attribute_value (gattdb_timestamp, 0,
                                                 sizeof(time_buff), time_buff);
-
   return sc;
 }
 
@@ -674,3 +693,63 @@ read_spp_characteristic (uint8_t *data)
                                                  &data_recv_len, data);
 }
 
+/******************************************************************************
+ * Check if incoming data string is valid.
+ ******************************************************************************/
+bool
+check_if_command_is_valid (char *inJson, size_t len, char *command,
+                           uint8_t *value)
+{
+  bool retValue = false;
+  const cJSON *hash = NULL;
+
+  cJSON *jsonObj = cJSON_ParseWithLength (inJson, len);
+  if (jsonObj == NULL)
+    {
+      return retValue;
+    }
+
+  hash = cJSON_GetObjectItemCaseSensitive (jsonObj, command);
+
+  if (cJSON_IsString (hash) && (hash->valuestring != NULL))
+    {
+      memcpy (value, hash->valuestring, strlen (hash->valuestring));
+      retValue = true;
+    }
+  else
+    {
+      value = NULL;
+      retValue = false;
+    }
+
+  cJSON_Delete (jsonObj);
+
+  return retValue;
+}
+
+/******************************************************************************
+ * Parse incoming data string
+ ******************************************************************************/
+bool
+parse_incoming_data_str (char *rxPacket)
+{
+  uint8_t value_array[32];
+
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "TEMPERATURE",
+                                 value_array))
+    {
+      update_current_temperature_characteristic ((uint8_t)atoi ((char*)value_array));
+      blocking_serial_write(value_array, strlen(value_array));
+      return true;
+    }
+
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "HUMIDITY",
+                                 value_array))
+    {
+      update_current_humidity_characteristic ((uint8_t)atoi ((char*)value_array));
+      blocking_serial_write(value_array, strlen(value_array));
+      return true;
+    }
+  // ...
+  return false;
+}

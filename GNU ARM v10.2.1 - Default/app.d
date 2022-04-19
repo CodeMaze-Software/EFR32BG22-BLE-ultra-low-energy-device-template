@@ -90,7 +90,8 @@ app.o: ../app.c \
  /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/gatt_db.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//protocol/bluetooth/inc/sli_bt_gattdb_def.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h \
- /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_usart.h
+ /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_usart.h \
+ ../cJSON.h
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/em_device.h:
@@ -183,3 +184,4 @@ app.o: ../app.c \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//protocol/bluetooth/inc/sli_bt_gattdb_def.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_usart.h:
+../cJSON.h:
