@@ -52,6 +52,10 @@
 #define SERIAL_REQUEST_PIN            1
 #define SERIAL_READY_PIN              2
 
+#define SERIAL_TEMPERATURE_CMD        "temperature"
+#define SERIAL_HUMIDITY_CMD           "humidity"
+#define SERIAL_BATT_LVL_CMD           "batt"
+
 /**************************************************************************//**
  * Declarations
  *****************************************************************************/
@@ -768,7 +772,7 @@ parse_incoming_data_str (char *rxPacket)
 {
   uint8_t value_array[32];
 
-  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "TEMPERATURE",
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), SERIAL_TEMPERATURE_CMD,
                                  value_array))
     {
       update_current_temperature_characteristic (
@@ -777,7 +781,7 @@ parse_incoming_data_str (char *rxPacket)
       return true;
     }
 
-  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "HUMIDITY",
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), SERIAL_HUMIDITY_CMD,
                                  value_array))
     {
       update_current_humidity_characteristic (
@@ -786,7 +790,7 @@ parse_incoming_data_str (char *rxPacket)
       return true;
     }
 
-  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "BATTERY",
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), SERIAL_BATT_LVL_CMD,
                                  value_array))
     {
       update_battery_level_characteristic (atof((char *)value_array));
