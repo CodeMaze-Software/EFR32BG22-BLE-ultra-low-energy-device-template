@@ -19,15 +19,14 @@ extern const sli_bt_gattdb_t gattdb;
 #define gattdb_system_id                      18
 #define gattdb_battery_service                19
 #define gattdb_battery_level                  21
-#define gattdb_characteristic_presentation_format 22
-#define gattdb_sensor                         23
-#define gattdb_temperature                    25
-#define gattdb_humidity                       27
-#define gattdb_aggregate                      29
-#define gattdb_current_time                   31
-#define gattdb_timestamp                      33
-#define gattdb_communication                  34
-#define gattdb_spp                            36
+#define gattdb_sensor                         22
+#define gattdb_temperature                    24
+#define gattdb_humidity                       26
+#define gattdb_aggregate                      28
+#define gattdb_current_time                   30
+#define gattdb_timestamp                      32
+#define gattdb_communication                  33
+#define gattdb_spp                            35
 
 
 #endif // __GATT_DB_H

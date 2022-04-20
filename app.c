@@ -67,6 +67,9 @@ update_current_temperature_characteristic (uint8_t current_temperature);
 static sl_status_t
 update_current_humidity_characteristic (uint8_t current_humidity);
 
+static sl_status_t
+update_battery_level_characteristic (float battery_level);
+
 void
 convert_overdue_data_to_byte_array (uint32_t *in_data, uint8_t *out_data);
 
@@ -96,6 +99,9 @@ check_if_command_is_valid (char *inJson, size_t len, char *command,
                            uint8_t *value);
 bool
 parse_incoming_data_str (char *rxPacket);
+
+float
+convert_array_to_float(uint8_t *array);
 
 /**************************************************************************//**
  * Handlers
@@ -167,6 +173,13 @@ enum
   DISABLED = 0, ENABLED, NONE
 };
 
+typedef union
+{
+  uint8_t bytes[4];
+  float number;
+
+}FLOATUNION_t;
+
 static uint8_t input_uart_buffer[SPP_BUFF_SIZE];
 static uint8_t temp_buffer[SPP_BUFF_SIZE];
 
@@ -189,6 +202,8 @@ periodic_timer_callback (sl_sleeptimer_timer_handle_t *handle, void *data)
 
   // Update timestamp value
   update_current_timestamp_characteristic (sl_sleeptimer_get_time ());
+
+  //update_battery_level_characteristic (3.25);
 
   // Current humidity notification >> todo real measurement or UART
   //update_current_humidity_characteristic (++dummy_i);
@@ -623,6 +638,24 @@ update_current_humidity_characteristic (uint8_t current_humidity)
 }
 
 /******************************************************************************
+ * Updates the battery level characteristic (write).
+ ******************************************************************************/
+static sl_status_t
+update_battery_level_characteristic (float battery_level)
+{
+  sl_status_t sc;
+  FLOATUNION_t f_to_array;
+
+  f_to_array.number = battery_level;
+
+  // Write attribute in the local GATT database.
+  sc = sl_bt_gatt_server_write_attribute_value (gattdb_battery_level, 0,
+                                                sizeof(f_to_array.bytes), f_to_array.bytes);
+
+  return sc;
+}
+
+/******************************************************************************
  * Convert data to byte array in format : [2B-ID][4B-TS][2B-Type][4B-Data]
  ******************************************************************************/
 void
@@ -738,18 +771,41 @@ parse_incoming_data_str (char *rxPacket)
   if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "TEMPERATURE",
                                  value_array))
     {
-      update_current_temperature_characteristic ((uint8_t)atoi ((char*)value_array));
-      blocking_serial_write(value_array, strlen(value_array));
+      update_current_temperature_characteristic (
+          (uint8_t) atoi ((char*) value_array));
+      blocking_serial_write (value_array, strlen ((char*) value_array));
       return true;
     }
 
   if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "HUMIDITY",
                                  value_array))
     {
-      update_current_humidity_characteristic ((uint8_t)atoi ((char*)value_array));
-      blocking_serial_write(value_array, strlen(value_array));
+      update_current_humidity_characteristic (
+          (uint8_t) atoi ((char*) value_array));
+      blocking_serial_write (value_array, strlen ((char*) value_array));
       return true;
     }
+
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), "BATTERY",
+                                 value_array))
+    {
+      update_battery_level_characteristic (atof((char *)value_array));
+      blocking_serial_write (value_array, strlen ((char*) value_array));
+      return true;
+    }
+
   // ...
   return false;
+}
+
+/******************************************************************************
+ * Convert from unsigned int8 array to float
+ ******************************************************************************/
+float
+convert_array_to_float(uint8_t *array)
+{
+  FLOATUNION_t converter;
+  memcpy(converter.bytes, array, sizeof(float));
+
+  return converter.number;
 }
