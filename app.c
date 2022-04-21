@@ -214,14 +214,6 @@ periodic_timer_callback (sl_sleeptimer_timer_handle_t *handle, void *data)
   // Update timestamp value
   update_current_timestamp_characteristic (sl_sleeptimer_get_time ());
 
-  //update_battery_level_characteristic (3.25);
-
-  // Current humidity notification >> todo real measurement or UART
-  //update_current_humidity_characteristic (++dummy_i);
-
-  // Current temperature notification >>  todo real measurement or UART
-  //update_current_temperature_characteristic (++dummy_i);
-
   // Update overdue values
   if (agregate_notify_flag)
     {
