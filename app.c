@@ -72,7 +72,7 @@ static sl_status_t
 update_current_humidity_characteristic (uint8_t current_humidity);
 
 static sl_status_t
-update_battery_level_characteristic (float battery_level);
+update_battery_level_characteristic (uint16_t battery_level);
 
 void
 convert_overdue_data_to_byte_array (uint32_t *in_data, uint8_t *out_data);
@@ -183,6 +183,13 @@ typedef union
   float number;
 
 }FLOATUNION_t;
+
+typedef union
+{
+  uint8_t bytes[2];
+  uint16_t number;
+
+}UINT16UNION_t;
 
 static uint8_t input_uart_buffer[SPP_BUFF_SIZE];
 static uint8_t temp_buffer[SPP_BUFF_SIZE];
@@ -300,6 +307,9 @@ app_process_action (void)
           if (!parse_incoming_data_str ((char*) input_uart_buffer))
             blocking_serial_write ((uint8_t*) "JSON error\n",
                                    strlen ("JSON error\n"));
+          else
+            blocking_serial_write ((uint8_t*) "OK\n",
+                                               strlen ("OK\n"));
 
           memset (temp_buffer, 0, SPP_BUFF_SIZE);
         }
@@ -645,16 +655,19 @@ update_current_humidity_characteristic (uint8_t current_humidity)
  * Updates the battery level characteristic (write).
  ******************************************************************************/
 static sl_status_t
-update_battery_level_characteristic (float battery_level)
+update_battery_level_characteristic (uint16_t battery_level)
 {
   sl_status_t sc;
-  FLOATUNION_t f_to_array;
+  uint8_t batt_arr[2];
 
-  f_to_array.number = battery_level;
+  UINT16_TO_BYTE1(1);
+
+  batt_arr[0] = UINT16_TO_BYTE1(battery_level);
+  batt_arr[1] = UINT16_TO_BYTE0(battery_level);
 
   // Write attribute in the local GATT database.
   sc = sl_bt_gatt_server_write_attribute_value (gattdb_battery_level, 0,
-                                                sizeof(f_to_array.bytes), f_to_array.bytes);
+                                                sizeof(batt_arr), batt_arr);
 
   return sc;
 }
@@ -777,7 +790,7 @@ parse_incoming_data_str (char *rxPacket)
     {
       update_current_temperature_characteristic (
           (uint8_t) atoi ((char*) value_array));
-      blocking_serial_write (value_array, strlen ((char*) value_array));
+      //blocking_serial_write (value_array, strlen ((char*) value_array));
       return true;
     }
 
@@ -786,15 +799,15 @@ parse_incoming_data_str (char *rxPacket)
     {
       update_current_humidity_characteristic (
           (uint8_t) atoi ((char*) value_array));
-      blocking_serial_write (value_array, strlen ((char*) value_array));
+      //blocking_serial_write (value_array, strlen ((char*) value_array));
       return true;
     }
 
   if (check_if_command_is_valid (rxPacket, strlen (rxPacket), SERIAL_BATT_LVL_CMD,
                                  value_array))
     {
-      update_battery_level_characteristic (atof((char *)value_array));
-      blocking_serial_write (value_array, strlen ((char*) value_array));
+      update_battery_level_characteristic (atoi((char *)value_array));
+      //blocking_serial_write (value_array, strlen ((char*) value_array));
       return true;
     }
 
