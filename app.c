@@ -202,6 +202,20 @@ static uint8_t ble_adv_state;
 // The advertising set handle allocated from Bluetooth stack.
 static uint8_t advertising_set_handle = 0xff;
 
+static void
+test_fun(void)
+{
+  if(++dummy_t >= 50)
+    dummy_t = 0;
+
+  if(++dummy_h >= 50)
+    dummy_h = 0;
+
+  update_current_temperature_characteristic(dummy_t);
+  update_current_humidity_characteristic(dummy_h);
+
+}
+
 /**************************************************************************//**
  * Application Sleeptimer callback
  *****************************************************************************/
@@ -210,6 +224,9 @@ periodic_timer_callback (sl_sleeptimer_timer_handle_t *handle, void *data)
 {
   (void) handle;
   (void) data;
+
+  //### DUMMY TEST: auto characteristic update##
+  //test_fun();//###############################
 
   // Update timestamp value
   update_current_timestamp_characteristic (sl_sleeptimer_get_time ());
@@ -327,9 +344,7 @@ blocking_serial_hw_control (bool connected)
       break;
 
     case false:
-      GPIO_PinInGet (SERIAL_READY_PORT, SERIAL_REQUEST_PIN) ?
-          GPIO_PinOutClear (SERIAL_READY_PORT, SERIAL_READY_PIN) :
-          GPIO_PinOutSet (SERIAL_READY_PORT, SERIAL_READY_PIN);
+      GPIO_PinOutClear (SERIAL_READY_PORT, SERIAL_READY_PIN);
       break;
     }
 }
