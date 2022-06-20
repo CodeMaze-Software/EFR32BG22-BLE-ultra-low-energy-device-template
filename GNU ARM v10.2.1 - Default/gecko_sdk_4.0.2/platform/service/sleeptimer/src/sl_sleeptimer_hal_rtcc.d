@@ -60,14 +60,14 @@ gecko_sdk_4.0.2/platform/service/sleeptimer/src/sl_sleeptimer_hal_rtcc.o: \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_ldmaxbar_defines.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sli_sleeptimer.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_bus.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h \
@@ -133,14 +133,14 @@ gecko_sdk_4.0.2/platform/service/sleeptimer/src/sl_sleeptimer_hal_rtcc.o: \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_ldmaxbar_defines.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sli_sleeptimer.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_bus.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h:

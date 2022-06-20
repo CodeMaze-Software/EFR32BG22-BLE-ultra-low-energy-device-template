@@ -14,6 +14,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "em_common.h"
 #include "sl_status.h"
 #include "sl_bluetooth.h"
@@ -22,6 +23,7 @@
 #include "sl_sleeptimer.h"
 #include "em_gpio.h"
 #include "em_usart.h"
+#include "em_i2c.h"
 
 #ifdef SL_COMPONENT_CATALOG_PRESENT
 #include "sl_component_catalog.h"
@@ -36,6 +38,11 @@
 #endif // SL_CATALOG_BTMESH_WSTK_LCD_PRESENT
 
 #include "cJSON.h"
+
+#include "sensor_i2c_utils.h"
+#include "sensor.h"
+#include "as6212.h"
+#include "flood_sensor.h"
 
 /**************************************************************************//**
  * Definitions
@@ -105,12 +112,23 @@ bool
 parse_incoming_data_str (char *rxPacket);
 
 float
-convert_array_to_float(uint8_t *array);
+convert_array_to_float (uint8_t *array);
+
+static sl_status_t
+update_current_internal_sensor_temperature_characteristic (
+    uint8_t current_temperature);
+
+static sl_status_t
+update_current_internal_sensor_humidity_characteristic (
+    uint8_t current_humidity);
+
+static sl_status_t
+update_internal_agregate_characteristic (uint32_t *agregate_data_array);
 
 /**************************************************************************//**
  * Handlers
  *****************************************************************************/
-sl_sleeptimer_timer_handle_t app_timer_handler, led_timer_handler;
+sl_sleeptimer_timer_handle_t app_timer_handler, app_agregate_timer_handler;
 sl_sleeptimer_date_t datetime;
 sl_sleeptimer_timestamp_t timestamp;
 
@@ -120,9 +138,11 @@ sl_sleeptimer_timestamp_t timestamp;
 // TEST VARs
 uint8_t dummy_h, dummy_t, dummy_i;
 uint32_t dummy_agregate_buff[4];
-uint8_t i;
+uint32_t i;
 
-// <<<<<<<<<
+float app_temperature_value;
+int app_humidity_value;
+sl_sleeptimer_timestamp_t last_timestamp;
 
 struct
 {
@@ -152,9 +172,8 @@ struct
       // the Assigned Numbers - Company Identifiers document.
         { UINT16_TO_BYTES(0x03aa) },
 
-      // Beacon type.
-      // 0x0215 is iBeacon.
-        { UINT16_TO_BYTE1(0x0215), UINT16_TO_BYTE0(0x0215) },
+      // Sensor type
+        { UINT16_TO_BYTE1(0xAAAA), UINT16_TO_BYTE0(0xBBBB) },
 
       // 128 bit / 16 byte UUID
         { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -182,38 +201,70 @@ typedef union
   uint8_t bytes[4];
   float number;
 
-}FLOATUNION_t;
+} FLOATUNION_t;
 
 typedef union
 {
   uint8_t bytes[2];
   uint16_t number;
 
-}UINT16UNION_t;
+} UINT16UNION_t;
 
 static uint8_t input_uart_buffer[SPP_BUFF_SIZE];
 static uint8_t temp_buffer[SPP_BUFF_SIZE];
 
 // Application ready flags
-static bool agregate_notify_flag, is_client_connected = false;
+static bool agregate_notify_flag, internal_agregate_notify_flag,
+    is_client_connected = false;
 
 static uint8_t ble_adv_state;
 
 // The advertising set handle allocated from Bluetooth stack.
 static uint8_t advertising_set_handle = 0xff;
 
+s_irqEventSensor_t floodSensor;
+
 static void
-test_fun(void)
+test_fun (void)
 {
-  if(++dummy_t >= 50)
-    dummy_t = 0;
+  uint32_t read[2];
+  uint32_t write[2];
 
-  if(++dummy_h >= 50)
-    dummy_h = 0;
+  sensorClearDataBuffer ();
 
-  update_current_temperature_characteristic(dummy_t);
-  update_current_humidity_characteristic(dummy_h);
+  write[0] = sensorGetRamStorageCurrentIndex ();
+  write[1] = 'A';
+  sensorPutDataToRamStorage (write, sizeof(write));
 
+  write[0] = sensorGetRamStorageCurrentIndex ();
+  write[1] = 'B';
+  sensorPutDataToRamStorage (write, sizeof(write));
+
+  write[0] = sensorGetRamStorageCurrentIndex ();
+  write[1] = 'C';
+  sensorPutDataToRamStorage (write, sizeof(write));
+
+  write[0] = sensorGetRamStorageCurrentIndex ();
+  write[1] = 'D';
+  sensorPutDataToRamStorage (write, sizeof(write));
+
+  write[0] = sensorGetRamStorageCurrentIndex ();
+  write[1] = 'E';
+  sensorPutDataToRamStorage (write, sizeof(write));
+
+  write[0] = sensorGetRamStorageCurrentIndex ();
+  write[1] = 'F';
+  sensorPutDataToRamStorage (write, sizeof(write));
+}
+
+void
+pinInterruptCallback (uint8_t port, uint8_t pin)
+{
+  char buf[64];
+  sprintf (buf, "Pin callback from: %d and pin: %d\n", port, pin);
+  blocking_serial_write ((uint8_t*) buf, strlen (buf));
+
+  // update pin irq notification characteristic ->>> todo
 }
 
 /**************************************************************************//**
@@ -225,17 +276,29 @@ periodic_timer_callback (sl_sleeptimer_timer_handle_t *handle, void *data)
   (void) handle;
   (void) data;
 
-  //### DUMMY TEST: auto characteristic update##
-  //test_fun();//###############################
-
   // Update timestamp value
   update_current_timestamp_characteristic (sl_sleeptimer_get_time ());
+}
 
-  // Update overdue values
-  if (agregate_notify_flag)
+void
+periodic_agregate_timer_callback (sl_sleeptimer_timer_handle_t *handle,
+                                  void *data)
+{
+  (void) handle;
+  (void) data;
+
+  uint32_t agrBuff[4];
+  static uint32_t readIdx;
+
+  sensorGetDataFromRamStorage (agrBuff, sizeof(agrBuff), ++readIdx);
+
+  if (agrBuff[0])
     {
-      dummy_agregate_buff[0] = i++; // DUMMY TEST
-      update_agregate_characteristic (dummy_agregate_buff);
+      update_internal_agregate_characteristic (agrBuff);
+    }
+  else
+    {
+      readIdx = 0;
     }
 }
 
@@ -250,8 +313,11 @@ app_init (void)
   USART_InitAsync_TypeDef initAsync = USART_INITASYNC_DEFAULT;
   USART_InitAsync (USART1, &initAsync);
 
+  //I2C_Init_TypeDef initI2c = I2C_INIT_DEFAULT;
+  //I2C_Init(NULL, &initI2c);
+
   // Disable overdue data notifying
-  agregate_notify_flag = false;
+  agregate_notify_flag = internal_agregate_notify_flag = false;
 
   ble_adv_state = DISABLED;
 
@@ -271,7 +337,7 @@ app_init (void)
   sc = sl_sleeptimer_set_time (timestamp);
 
   // Enable periodic application timer
-  sl_sleeptimer_start_periodic_timer (&app_timer_handler, 30000,
+  sl_sleeptimer_start_periodic_timer (&app_timer_handler, 3000,
                                       periodic_timer_callback, (void*) NULL, 0,
                                       0);
 
@@ -289,9 +355,22 @@ app_init (void)
 
   // Sends invitation string via USART
   uint8_t uart_hello_str[] =
-    { "Hello EFR32BG22 - BLE Template - ver 1.0\n" };
+    { "Hello EFR32BG22 - BLE Template - ver 1.2[Pajak]\n" };
   blocking_serial_write (uart_hello_str, strlen ((char*) uart_hello_str));
+
+  // Initialize AS6212 temperature sensor
+  sensorInit (AS6212);
+
+  // Initialize IRQ sensor
+  floodSensor.floodSensorPort = gpioPortA;
+  floodSensor.floodSensorPin = 0;
+  irqSensorInitialization (&floodSensor, pinInterruptCallback);
+
+  // Clear data storage buffer
+  sensorClearDataBuffer ();
 }
+
+uint32_t write[4];
 
 /***************************************************************************//**
  * Application Process Action.
@@ -299,6 +378,9 @@ app_init (void)
 SL_WEAK void
 app_process_action (void)
 {
+  // Check external IRQ
+  irqSensor_EVENT (&floodSensor);
+
   // Checks hardware pins to allows serial communication
   blocking_serial_hw_control (is_client_connected);
 
@@ -317,8 +399,7 @@ app_process_action (void)
             blocking_serial_write ((uint8_t*) "JSON error\n",
                                    strlen ("JSON error\n"));
           else
-            blocking_serial_write ((uint8_t*) "OK\n",
-                                               strlen ("OK\n"));
+            blocking_serial_write ((uint8_t*) "OK\n", strlen ("OK\n"));
 
           memset (temp_buffer, 0, SPP_BUFF_SIZE);
         }
@@ -328,6 +409,33 @@ app_process_action (void)
       // Let the CPU go to sleep if the system allows it.
       sl_power_manager_sleep ();
     }
+
+  if (sl_sleeptimer_get_time () - last_timestamp > 10)
+    {
+      last_timestamp = sl_sleeptimer_get_time ();
+
+      // Update internal sensor temperature characteristic
+      sensorGetTemperatureC (0, &app_temperature_value);
+
+      // Fill temporary buffer
+      write[0] = sensorGetRamStorageCurrentIndex ();
+      write[1] = sl_sleeptimer_get_time();
+      write[2] = 0xffff;//todo Data type macro
+      write[3] = app_temperature_value;
+
+      // Put current data to ring-buffer
+      sensorPutDataToRamStorage (write, sizeof(write));
+
+      // Update the temperature characteristic
+      update_current_internal_sensor_temperature_characteristic (
+          (uint8_t) app_temperature_value);
+
+      // Print on uart
+      blocking_serial_write ((uint8_t*) "Runtime sensor read time\n",
+                             strlen ("Runtime sensor read time\n"));
+
+    }
+
 }
 
 /**************************************************************************//**
@@ -337,16 +445,9 @@ app_process_action (void)
 void
 blocking_serial_hw_control (bool connected)
 {
-  switch (connected)
-    {
-    case true:
-      GPIO_PinOutSet (SERIAL_READY_PORT, SERIAL_READY_PIN);
-      break;
-
-    case false:
+  connected ?
+      GPIO_PinOutSet (SERIAL_READY_PORT, SERIAL_READY_PIN) :
       GPIO_PinOutClear (SERIAL_READY_PORT, SERIAL_READY_PIN);
-      break;
-    }
 }
 
 /**************************************************************************//**
@@ -549,7 +650,7 @@ sl_bt_on_event (sl_bt_msg_t *evt)
 
       // -------------------------------
       // This event occurs when the remote device enabled or disabled the
-      // notification or read request.
+      // notification request.
     case sl_bt_evt_gatt_server_characteristic_status_id:
 
       if (gattdb_aggregate
@@ -558,17 +659,32 @@ sl_bt_on_event (sl_bt_msg_t *evt)
           if (evt->data.evt_gatt_server_characteristic_status.client_config_flags
               & sl_bt_gatt_notification)
             {
-              agregate_notify_flag = true;
+              // todo
             }
           else
             {
-              agregate_notify_flag = false;
+              // todo
+            }
+        }
+
+      if (gattdb_internal_aggregate
+          == evt->data.evt_gatt_server_characteristic_status.characteristic)
+        {
+          if (evt->data.evt_gatt_server_characteristic_status.client_config_flags
+              & sl_bt_gatt_notification)
+            {
+
+              sl_sleeptimer_start_periodic_timer (
+                  &app_agregate_timer_handler, 300,
+                  periodic_agregate_timer_callback, (void*) NULL, 0, 0);
+            }
+          else
+            {
+              sl_sleeptimer_stop_timer (&app_agregate_timer_handler);
             }
         }
 
       break;
-
-      //<<
 
     case sl_bt_evt_advertiser_timeout_id:
       // todo advertising timeout  (do nothing?!)
@@ -792,7 +908,8 @@ parse_incoming_data_str (char *rxPacket)
 {
   uint8_t value_array[32];
 
-  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), SERIAL_TEMPERATURE_CMD,
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket),
+  SERIAL_TEMPERATURE_CMD,
                                  value_array))
     {
       update_current_temperature_characteristic (
@@ -801,7 +918,8 @@ parse_incoming_data_str (char *rxPacket)
       return true;
     }
 
-  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), SERIAL_HUMIDITY_CMD,
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket),
+  SERIAL_HUMIDITY_CMD,
                                  value_array))
     {
       update_current_humidity_characteristic (
@@ -810,10 +928,11 @@ parse_incoming_data_str (char *rxPacket)
       return true;
     }
 
-  if (check_if_command_is_valid (rxPacket, strlen (rxPacket), SERIAL_BATT_LVL_CMD,
+  if (check_if_command_is_valid (rxPacket, strlen (rxPacket),
+  SERIAL_BATT_LVL_CMD,
                                  value_array))
     {
-      update_battery_level_characteristic (atoi((char *)value_array));
+      update_battery_level_characteristic (atoi ((char*) value_array));
       //blocking_serial_write (value_array, strlen ((char*) value_array));
       return true;
     }
@@ -826,10 +945,60 @@ parse_incoming_data_str (char *rxPacket)
  * Convert from unsigned int8 array to float
  ******************************************************************************/
 float
-convert_array_to_float(uint8_t *array)
+convert_array_to_float (uint8_t *array)
 {
   FLOATUNION_t converter;
-  memcpy(converter.bytes, array, sizeof(float));
+  memcpy (converter.bytes, array, sizeof(float));
 
   return converter.number;
+}
+
+/******************************************************************************
+ * Updates the internal sensor current temperature characteristic (write).
+ ******************************************************************************/
+static sl_status_t
+update_current_internal_sensor_temperature_characteristic (
+    uint8_t current_temperature)
+{
+  sl_status_t sc;
+
+  // Write attribute in the local GATT database.
+  sc = sl_bt_gatt_server_write_attribute_value (gattdb_internal_temperature, 0,
+                                                sizeof(current_temperature),
+                                                &current_temperature);
+  return sc;
+}
+
+/******************************************************************************
+ * Updates the internal sensor current humidity characteristic (write).
+ ******************************************************************************/
+static sl_status_t
+update_current_internal_sensor_humidity_characteristic (
+    uint8_t current_humidity)
+{
+  sl_status_t sc;
+
+  // Write attribute in the local GATT database.
+  sc = sl_bt_gatt_server_write_attribute_value (gattdb_internal_humidity, 0,
+                                                sizeof(current_humidity),
+                                                &current_humidity);
+  return sc;
+}
+
+/******************************************************************************
+ * Updates the internal agregate characteristic (write).
+ ******************************************************************************/
+static sl_status_t
+update_internal_agregate_characteristic (uint32_t *agregate_data_array)
+{
+  sl_status_t sc;
+  uint8_t temp_buff[14];
+
+  // Convert data to byte array
+  convert_overdue_data_to_byte_array (agregate_data_array, temp_buff);
+
+  sc = sl_bt_gatt_server_notify_all (gattdb_internal_aggregate,
+                                     sizeof(temp_buff), temp_buff);
+
+  return sc;
 }

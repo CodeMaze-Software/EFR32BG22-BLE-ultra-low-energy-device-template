@@ -62,7 +62,7 @@ gecko_sdk_4.0.2/util/third_party/crypto/sl_component/se_manager/src/sl_se_manage
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_types.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_defines.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_config.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_check_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_se.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h \
@@ -137,7 +137,7 @@ gecko_sdk_4.0.2/util/third_party/crypto/sl_component/se_manager/src/sl_se_manage
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_types.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_defines.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_config.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/se_manager/inc/sl_se_manager_check_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_se.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h:

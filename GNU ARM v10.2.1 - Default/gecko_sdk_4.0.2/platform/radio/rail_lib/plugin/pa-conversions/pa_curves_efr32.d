@@ -62,7 +62,7 @@ gecko_sdk_4.0.2/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.o:
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/chip/efr32/efr32xg2x/rail_chip_specific.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_features.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_types.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_rail_util_pa_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_rail_util_pa_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/radio/rail_lib/plugin/pa-conversions/efr32xg22/sl_rail_util_pa_curves.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curve_types_efr32.h
@@ -128,7 +128,7 @@ gecko_sdk_4.0.2/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.o:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/chip/efr32/efr32xg2x/rail_chip_specific.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_features.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_types.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_rail_util_pa_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_rail_util_pa_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/radio/rail_lib/plugin/pa-conversions/efr32xg22/sl_rail_util_pa_curves.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curve_types_efr32.h:

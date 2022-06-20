@@ -62,15 +62,15 @@ gecko_sdk_4.0.2/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_u
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_bus.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu_compat.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_usart.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/udelay/inc/sl_udelay.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//hardware/driver/mx25_flash_shutdown/inc/sl_mx25_flash_shutdown_usart/sl_mx25_flash_shutdown.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_mx25_flash_shutdown_usart_config.h
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_mx25_flash_shutdown_usart_config.h
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/em_device.h:
@@ -133,12 +133,12 @@ gecko_sdk_4.0.2/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_u
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_bus.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu_compat.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_usart.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/udelay/inc/sl_udelay.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//hardware/driver/mx25_flash_shutdown/inc/sl_mx25_flash_shutdown_usart/sl_mx25_flash_shutdown.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_mx25_flash_shutdown_usart_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_mx25_flash_shutdown_usart_config.h:

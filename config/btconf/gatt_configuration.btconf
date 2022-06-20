@@ -124,4 +124,36 @@
       </properties>
     </characteristic>
   </service>
+  
+  <!--Internal_Sensor-->
+  <service advertise="true" id="internal_sensor" name="Internal_Sensor" requirement="mandatory" sourceId="org.bluetooth.service.automation_io" type="primary" uuid="0100">
+    <informativeText>Abstract:  The Automation IO service is used to expose the analog inputs/outputs and digital input/outputs of a generic IO module (IOM).  </informativeText>
+    
+    <!--Temperature_sensor-->
+    <characteristic const="false" id="internal_temperature" name="Temperature_sensor" sourceId="org.bluetooth.characteristic.temperature" uuid="0001">
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Humidity_sensor-->
+    <characteristic const="false" id="internal_humidity" name="Humidity_sensor" sourceId="org.bluetooth.characteristic.humidity" uuid="0002">
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Internal_memory-->
+    <characteristic const="false" id="internal_aggregate" name="Internal_memory" sourceId="org.bluetooth.characteristic.aggregate" uuid="0003">
+      <informativeText>Summary:  The Aggregate Input is an aggregate of the Digital Input Characteristic value (if available) and ALL Analog Inputs available.  </informativeText>
+      <value length="16" type="hex" variable_length="false">00000000000000000000000000000000</value>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
 </gatt>

@@ -66,7 +66,7 @@ gecko_sdk_4.0.2/platform/emdrv/nvm3/src/nvm3_default_common_linker.o: \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3_default.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3_hal_flash.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/nvm3_default_config.h
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/nvm3_default_config.h
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3_hal.h:
@@ -133,4 +133,4 @@ gecko_sdk_4.0.2/platform/emdrv/nvm3/src/nvm3_default_common_linker.o: \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3_default.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/nvm3/inc/nvm3_hal_flash.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/nvm3_default_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/nvm3_default_config.h:

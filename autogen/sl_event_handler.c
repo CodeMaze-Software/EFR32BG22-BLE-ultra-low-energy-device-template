@@ -15,6 +15,7 @@
 #include "sl_sleeptimer.h"
 #include "sl_bluetooth.h"
 #include "gpiointerrupt.h"
+#include "sl_i2cspm_instances.h"
 #include "sl_mbedtls.h"
 #include "sl_mpu.h"
 #include "nvm3_default.h"
@@ -41,6 +42,7 @@ void sl_platform_init(void)
 void sl_driver_init(void)
 {
   GPIOINT_Init();
+  sl_i2cspm_init_instances();
   sl_uartdrv_init_instances();
 }
 

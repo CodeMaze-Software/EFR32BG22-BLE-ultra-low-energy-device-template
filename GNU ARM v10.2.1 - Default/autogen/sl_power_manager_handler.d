@@ -59,25 +59,25 @@ autogen/sl_power_manager_handler.o: ../autogen/sl_power_manager_handler.c \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_ldmaxbar_defines.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/power_manager/inc/sl_power_manager.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_power_manager_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_power_manager_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_slist.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_enum.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_emu.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_bus.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h \
  ../autogen/sl_bluetooth.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_bluetooth_config.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_bluetooth_connection_config.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_bluetooth_advertiser_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_bluetooth_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_bluetooth_connection_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_bluetooth_advertiser_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//protocol/bluetooth/inc/sl_bt_stack_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//protocol/bluetooth/inc/sl_bt_ll_config.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_rail_util_pa_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_rail_util_pa_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_types.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/chip/efr32/efr32xg2x/rail_chip_specific.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_features.h \
@@ -94,10 +94,10 @@ autogen/sl_power_manager_handler.o: ../autogen/sl_power_manager_handler.c \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu_compat.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/common/inc/ecode.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/uartdrv_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/uartdrv_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/dmadrv/inc/dmadrv.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_ldma.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/dmadrv_config.h
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/dmadrv_config.h
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/em_device.h:
@@ -158,25 +158,25 @@ autogen/sl_power_manager_handler.o: ../autogen/sl_power_manager_handler.c \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_ldmaxbar_defines.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/power_manager/inc/sl_power_manager.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_power_manager_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_power_manager_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_slist.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_enum.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_emu.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_bus.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h:
 ../autogen/sl_bluetooth.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_bluetooth_config.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_bluetooth_connection_config.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_bluetooth_advertiser_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_bluetooth_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_bluetooth_connection_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_bluetooth_advertiser_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//protocol/bluetooth/inc/sl_bt_stack_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//protocol/bluetooth/inc/sl_bt_ll_config.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_rail_util_pa_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_rail_util_pa_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_types.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/chip/efr32/efr32xg2x/rail_chip_specific.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/radio/rail_lib/common/rail_features.h:
@@ -193,7 +193,7 @@ autogen/sl_power_manager_handler.o: ../autogen/sl_power_manager_handler.c \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu_compat.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/common/inc/ecode.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/uartdrv_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/uartdrv_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emdrv/dmadrv/inc/dmadrv.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_ldma.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/dmadrv_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/dmadrv_config.h:

@@ -61,7 +61,7 @@ gecko_sdk_4.0.2/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.o: \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/hfxo_manager/inc/sli_hfxo_manager.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/hfxo_manager/inc/sl_hfxo_manager.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_hfxo_manager_config.h
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_hfxo_manager_config.h
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/em_device.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22c224f512im40.h:
@@ -123,4 +123,4 @@ gecko_sdk_4.0.2/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.o: \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/hfxo_manager/inc/sli_hfxo_manager.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/hfxo_manager/inc/sl_hfxo_manager.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_hfxo_manager_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_hfxo_manager_config.h:

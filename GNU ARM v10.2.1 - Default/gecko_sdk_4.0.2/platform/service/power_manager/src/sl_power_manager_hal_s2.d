@@ -62,19 +62,19 @@ gecko_sdk_4.0.2/platform/service/power_manager/src/sl_power_manager_hal_s2.o: \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu_compat.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_power_manager_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_power_manager_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/power_manager/inc/sl_power_manager.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_slist.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_enum.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/service/power_manager/src/sli_power_manager_private.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sli_sleeptimer.h \
@@ -141,19 +141,19 @@ gecko_sdk_4.0.2/platform/service/power_manager/src/sl_power_manager_hal_s2.o: \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_common.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_component_catalog.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/emlib_core_debug_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_component_catalog.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/emlib_core_debug_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_cmu_compat.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_gpio.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_power_manager_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_power_manager_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/power_manager/inc/sl_power_manager.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_core.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_slist.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_status.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/inc/sl_enum.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/service/power_manager/src/sli_power_manager_private.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sli_sleeptimer.h:

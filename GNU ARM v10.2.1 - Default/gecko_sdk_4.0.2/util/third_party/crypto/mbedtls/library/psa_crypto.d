@@ -3,8 +3,8 @@ gecko_sdk_4.0.2/util/third_party/crypto/mbedtls/library/psa_crypto.o: \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/util/third_party/crypto/mbedtls/library/common.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/mbedtls/build_info.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/mbedtls_config.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/mbedtls_config_autogen.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/mbedtls_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/mbedtls_config_autogen.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/sl_mbedtls_support/config/config-device-acceleration.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/em_device.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22c224f512im40.h \
@@ -63,10 +63,10 @@ gecko_sdk_4.0.2/util/third_party/crypto/mbedtls/library/psa_crypto.o: \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_dma_descriptor.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_ldmaxbar_defines.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/silicon_labs/silabs_core/memory_manager/sl_malloc.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_mbedtls_config_transform_autogen.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_mbedtls_config_transform_autogen.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/mbedtls/config_psa.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/psa_crypto_config.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/psa_crypto_config_autogen.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/psa_crypto_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/psa_crypto_config_autogen.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/mbedtls/check_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/util/third_party/crypto/mbedtls/library/check_crypto_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/psa/crypto.h \
@@ -153,8 +153,8 @@ gecko_sdk_4.0.2/util/third_party/crypto/mbedtls/library/psa_crypto.o: \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/util/third_party/crypto/mbedtls/library/common.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/mbedtls/build_info.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/mbedtls_config.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/mbedtls_config_autogen.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/mbedtls_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/mbedtls_config_autogen.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/sl_component/sl_mbedtls_support/config/config-device-acceleration.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/em_device.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22c224f512im40.h:
@@ -213,10 +213,10 @@ gecko_sdk_4.0.2/util/third_party/crypto/mbedtls/library/psa_crypto.o: \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_dma_descriptor.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/efr32bg22_ldmaxbar_defines.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/silicon_labs/silabs_core/memory_manager/sl_malloc.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/sl_mbedtls_config_transform_autogen.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/sl_mbedtls_config_transform_autogen.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/mbedtls/config_psa.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/psa_crypto_config.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/autogen/psa_crypto_config_autogen.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/psa_crypto_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/autogen/psa_crypto_config_autogen.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/mbedtls/check_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/util/third_party/crypto/mbedtls/library/check_crypto_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//util/third_party/crypto/mbedtls/include/psa/crypto.h:

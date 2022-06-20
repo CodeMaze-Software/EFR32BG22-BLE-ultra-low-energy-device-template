@@ -62,7 +62,7 @@ gecko_sdk_4.0.2/platform/service/hfxo_manager/src/sl_hfxo_manager.o: \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/hfxo_manager/inc/sli_hfxo_manager.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/service/hfxo_manager/src/sli_hfxo_manager_internal.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h \
- /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h \
+ /Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h \
  /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/common/toolchain/inc/sl_gcc_preinclude.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/Device/SiliconLabs/EFR32BG22/Include/em_device.h:
@@ -126,5 +126,5 @@ gecko_sdk_4.0.2/platform/service/hfxo_manager/src/sl_hfxo_manager.o: \
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/hfxo_manager/inc/sli_hfxo_manager.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk/platform/service/hfxo_manager/src/sli_hfxo_manager_internal.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/service/sleeptimer/inc/sl_sleeptimer.h:
-/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_0/config/sl_sleeptimer_config.h:
+/Users/Darek/SimplicityStudio/v5_workspace/BLE_Device_1_1/config/sl_sleeptimer_config.h:
 /Users/Darek/SimplicityStudio/SDKs/gecko_sdk//platform/emlib/inc/em_assert.h:

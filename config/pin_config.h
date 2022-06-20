@@ -88,6 +88,14 @@
 // [USART1]$
 
 // $[I2C1]
+// I2C1 SCL on PD03
+#define I2C1_SCL_PORT                            gpioPortD
+#define I2C1_SCL_PIN                             3
+
+// I2C1 SDA on PD02
+#define I2C1_SDA_PORT                            gpioPortD
+#define I2C1_SDA_PIN                             2
+
 // [I2C1]$
 
 // $[PDM]
@@ -100,6 +108,14 @@
 // [IADC0]$
 
 // $[I2C0]
+// I2C0 SCL on PC05
+#define I2C0_SCL_PORT                            gpioPortC
+#define I2C0_SCL_PIN                             5
+
+// I2C0 SDA on PC04
+#define I2C0_SDA_PORT                            gpioPortC
+#define I2C0_SDA_PIN                             4
+
 // [I2C0]$
 
 // $[EUART0]

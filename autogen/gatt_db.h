@@ -27,6 +27,10 @@ extern const sli_bt_gattdb_t gattdb;
 #define gattdb_timestamp                      32
 #define gattdb_communication                  33
 #define gattdb_spp                            35
+#define gattdb_internal_sensor                36
+#define gattdb_internal_temperature           38
+#define gattdb_internal_humidity              40
+#define gattdb_internal_aggregate             42
 
 
 #endif // __GATT_DB_H
