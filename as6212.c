@@ -61,7 +61,7 @@ as6212WriteRegister (uint8_t reg, int16_t data)
   sensorI2cWriteData (deviceAddress, txBuffer, 3);
 }
 
-int16_t
+float
 as6212ReadTemperatureC (void)
 {
   int16_t digitalTempC = as6212ReadRegister (TVAL, 2);

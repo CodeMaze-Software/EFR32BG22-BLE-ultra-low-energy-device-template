@@ -114,13 +114,25 @@ parse_incoming_data_str (char *rxPacket);
 float
 convert_array_to_float (uint8_t *array);
 
+uint8_t*
+convert_uint32_to_array (uint32_t value);
+
+uint8_t*
+convert_float_to_array (float value);
+
+uint32_t
+convert_float_to_uint32_big_endian (float value);
+
+uint32_t
+convert_float_to_uint32_little_endian (float value);
+
 static sl_status_t
 update_current_internal_sensor_temperature_characteristic (
-    uint8_t current_temperature);
+    uint32_t current_temperature);
 
 static sl_status_t
 update_current_internal_sensor_humidity_characteristic (
-    uint8_t current_humidity);
+    uint32_t current_humidity);
 
 static sl_status_t
 update_internal_agregate_characteristic (uint32_t *agregate_data_array);
@@ -135,11 +147,6 @@ sl_sleeptimer_timestamp_t timestamp;
 /**************************************************************************//**
  * Application global variables
  *****************************************************************************/
-// TEST VARs
-uint8_t dummy_h, dummy_t, dummy_i;
-uint32_t dummy_agregate_buff[4];
-uint32_t i;
-
 float app_temperature_value;
 int app_humidity_value;
 sl_sleeptimer_timestamp_t last_timestamp;
@@ -200,6 +207,7 @@ typedef union
 {
   uint8_t bytes[4];
   float number;
+  uint32_t uint32_number;
 
 } FLOATUNION_t;
 
@@ -341,11 +349,6 @@ app_init (void)
                                       periodic_timer_callback, (void*) NULL, 0,
                                       0);
 
-  // DUMMY TEST <<<!>>>
-  dummy_agregate_buff[1] = sl_sleeptimer_get_time ();
-  dummy_agregate_buff[2] = 0xAAAA;
-  dummy_agregate_buff[3] = 5;
-
   // Initialize connection indicator pin
   GPIO_PinModeSet (SERIAL_READY_PORT, SERIAL_READY_PIN, gpioModePushPull, 1);
   GPIO_PinOutClear (SERIAL_READY_PORT, SERIAL_READY_PIN);
@@ -419,16 +422,18 @@ app_process_action (void)
 
       // Fill temporary buffer
       write[0] = sensorGetRamStorageCurrentIndex ();
-      write[1] = sl_sleeptimer_get_time();
-      write[2] = 0xffff;//todo Data type macro
-      write[3] = app_temperature_value;
+      write[1] = sl_sleeptimer_get_time ();
+      write[2] = 0xAAFF; // Data type
+      write[3] = convert_float_to_uint32_big_endian (app_temperature_value);
 
       // Put current data to ring-buffer
       sensorPutDataToRamStorage (write, sizeof(write));
 
       // Update the temperature characteristic
       update_current_internal_sensor_temperature_characteristic (
-          (uint8_t) app_temperature_value);
+          convert_float_to_uint32_little_endian (app_temperature_value));
+      update_current_internal_sensor_humidity_characteristic (
+          convert_float_to_uint32_little_endian (app_humidity_value));
 
       // Print on uart
       blocking_serial_write ((uint8_t*) "Runtime sensor read time\n",
@@ -954,18 +959,85 @@ convert_array_to_float (uint8_t *array)
 }
 
 /******************************************************************************
- * Updates the internal sensor current temperature characteristic (write).
+ * Convert from float to uint8_t array
  ******************************************************************************/
+uint8_t*
+convert_float_to_array (float value)
+{
+  static uint8_t temp_buff[4];
+
+  FLOATUNION_t converter;
+  converter.number = value;
+
+  memcpy (temp_buff, converter.bytes, sizeof(float));
+  return temp_buff;
+}
+
+/******************************************************************************
+ * Convert from uint32_t to uint8_t array
+ ******************************************************************************/
+uint8_t*
+convert_uint32_to_array (uint32_t value)
+{
+  static uint8_t temp_buff[4];
+
+  FLOATUNION_t converter;
+  converter.uint32_number = value;
+
+  memcpy (temp_buff, converter.bytes, sizeof(float));
+  return temp_buff;
+}
+
+/******************************************************************************
+ * Convert from float to uint32_t (big endian)
+ ******************************************************************************/
+uint32_t
+convert_float_to_uint32_big_endian (float value)
+{
+  uint32_t ret_value;
+
+  FLOATUNION_t converter;
+  converter.number = value;
+
+  ret_value = converter.bytes[3] << 24;
+  ret_value |= converter.bytes[2] << 16;
+  ret_value |= converter.bytes[1] << 8;
+  ret_value |= converter.bytes[0];
+
+  return ret_value;
+}
+
+/******************************************************************************
+ * Convert from float to uint32_t (little endian)
+ ******************************************************************************/
+uint32_t
+convert_float_to_uint32_little_endian (float value)
+{
+  uint32_t ret_value;
+
+  FLOATUNION_t converter;
+  converter.number = value;
+
+  ret_value = converter.bytes[0] << 24;
+  ret_value |= converter.bytes[1] << 16;
+  ret_value |= converter.bytes[2] << 8;
+  ret_value |= converter.bytes[3];
+
+  return ret_value;
+}
+
 static sl_status_t
 update_current_internal_sensor_temperature_characteristic (
-    uint8_t current_temperature)
+    uint32_t current_temperature)
 {
   sl_status_t sc;
+  uint8_t *temp_buff;
+
+  temp_buff = convert_uint32_to_array (current_temperature);
 
   // Write attribute in the local GATT database.
   sc = sl_bt_gatt_server_write_attribute_value (gattdb_internal_temperature, 0,
-                                                sizeof(current_temperature),
-                                                &current_temperature);
+                                                4, temp_buff);
   return sc;
 }
 
@@ -974,15 +1046,17 @@ update_current_internal_sensor_temperature_characteristic (
  ******************************************************************************/
 static sl_status_t
 update_current_internal_sensor_humidity_characteristic (
-    uint8_t current_humidity)
+    uint32_t current_humidity)
 {
   sl_status_t sc;
+  uint8_t *temp_buff;
+
+  temp_buff = convert_uint32_to_array (current_humidity);
 
   // Write attribute in the local GATT database.
-  sc = sl_bt_gatt_server_write_attribute_value (gattdb_internal_humidity, 0,
-                                                sizeof(current_humidity),
-                                                &current_humidity);
-  return sc;
+  sc = sl_bt_gatt_server_write_attribute_value (gattdb_internal_humidity, 0, 4,
+                                                temp_buff);
+  return 0;
 }
 
 /******************************************************************************

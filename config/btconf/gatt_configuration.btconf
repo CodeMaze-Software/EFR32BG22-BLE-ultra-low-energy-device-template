@@ -132,7 +132,7 @@
     <!--Temperature_sensor-->
     <characteristic const="false" id="internal_temperature" name="Temperature_sensor" sourceId="org.bluetooth.characteristic.temperature" uuid="0001">
       <informativeText/>
-      <value length="1" type="hex" variable_length="false">00</value>
+      <value length="4" type="hex" variable_length="false">00000000</value>
       <properties>
         <read authenticated="false" bonded="false" encrypted="false"/>
       </properties>
@@ -141,7 +141,7 @@
     <!--Humidity_sensor-->
     <characteristic const="false" id="internal_humidity" name="Humidity_sensor" sourceId="org.bluetooth.characteristic.humidity" uuid="0002">
       <informativeText/>
-      <value length="1" type="hex" variable_length="false">00</value>
+      <value length="4" type="hex" variable_length="false">00000000</value>
       <properties>
         <read authenticated="false" bonded="false" encrypted="false"/>
       </properties>

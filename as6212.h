@@ -52,7 +52,7 @@ as6212ReadRegister (uint8_t reg, uint8_t size);
 void
 as6212WriteRegister (uint8_t reg, int16_t data);
 
-int16_t
+float
 as6212ReadTemperatureC (void);
 
 float
